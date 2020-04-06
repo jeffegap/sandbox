@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+APACHE_LISTEN_PORT=8000
+cat /etc/apache2/ports.conf
+echo ----------------------------------
+sed -i "s/Listen 80/Listen ${APACHE_LISTEN_PORT}/g" /etc/apache2/ports.conf
+sed -i "s/:80/:${APACHE_LISTEN_PORT}/g" /etc/apache2/sites-enabled/*
+cat /etc/apache2/ports.conf
+apache2-foreground
